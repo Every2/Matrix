@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(matrix
         include/matrix.hpp
-        src/matrix.cpp)
+        src/matrix.cpp
+        include/specialized_functions.h
+)
