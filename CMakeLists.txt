@@ -3,8 +3,12 @@ project(matrix)
 
 set(CMAKE_CXX_STANDARD 20)
 
+find_package(Boost)
+
 add_executable(matrix
         include/matrix.hpp
         src/matrix.cpp
         include/specialized_functions.h
 )
+
+target_link_libraries(matrix boost::boost)

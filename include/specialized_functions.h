@@ -2,14 +2,16 @@
 #define SPECIALIZED_FUNCTIONS_HPP
 
 #include <array>
-#include <ratio>
+#include <boost/rational.hpp>
 
 template<typename TypeSpecialization, std::size_t ROWS, std::size_t COLS>
-using MatrixType = std::array<std::array<TypeSpecialization, ROWS>, COLS>;
+using MatrixType = std::array<std::array<TypeSpecialization, COLS>, ROWS>;
 
-template<std::size_t ROWS, std::size_t COLS>
-MatrixType<double, ROWS, COLS> sum(MatrixType<double, ROWS, COLS>& matrix, MatrixType<double, ROWS, COLS>& other) {
-    MatrixType result{};
+using Rational = boost::rational<int>;
+
+template<std::size_t COLS, std::size_t ROWS>
+MatrixType<double, COLS, ROWS> sum(MatrixType<double, COLS, ROWS>& matrix, MatrixType<double, COLS, ROWS>& other) {
+    MatrixType<double, COLS, ROWS> result{};
     for (std::size_t i {0}; i < ROWS; ++i) {
         for (std::size_t j {0}; j < COLS; ++j) {
             result[i][j] = matrix[i][j] + other[i][j];
@@ -29,10 +31,10 @@ MatrixType<int, ROWS, COLS> sum(MatrixType<int, ROWS, COLS>& matrix, MatrixType<
     return result;
 }
 
-template<int NUMERATOR, std::size_t ROWS, std::size_t COLS>
-MatrixType<std::ratio<NUMERATOR>, ROWS, COLS> sum(MatrixType<std::ratio<NUMERATOR>, ROWS, COLS>& matrix,
-    MatrixType<std::ratio<NUMERATOR>, ROWS, COLS>& other) {
-    MatrixType result{};
+template<std::size_t ROWS, std::size_t COLS>
+MatrixType<Rational, ROWS, COLS> sum(MatrixType<Rational, ROWS, COLS>& matrix,
+    MatrixType<Rational, ROWS, COLS>& other) {
+    MatrixType<Rational, ROWS, COLS> result{};
     for (std::size_t i {0}; i < ROWS; ++i) {
         for (std::size_t j {0}; j < COLS; ++j) {
             result[i][j] = matrix[i][j] + other[i][j];
@@ -43,7 +45,7 @@ MatrixType<std::ratio<NUMERATOR>, ROWS, COLS> sum(MatrixType<std::ratio<NUMERATO
 
 template<std::size_t ROWS, std::size_t COLS>
 MatrixType<double, ROWS, COLS> sub(MatrixType<double, ROWS, COLS>& matrix, MatrixType<double, ROWS, COLS>& other) {
-        MatrixType result{};
+        MatrixType<double, ROWS, COLS> result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[i][j] = matrix[i][j] - other[i][j];
@@ -54,7 +56,7 @@ MatrixType<double, ROWS, COLS> sub(MatrixType<double, ROWS, COLS>& matrix, Matri
 
 template<std::size_t ROWS, std::size_t COLS>
 MatrixType<int, ROWS, COLS> sub(MatrixType<int, ROWS, COLS>& matrix, MatrixType<int, ROWS, COLS>& other) {
-        MatrixType result{};
+        MatrixType<int, ROWS, COLS> result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[i][j] = matrix[i][j] - other[i][j];
@@ -63,10 +65,10 @@ MatrixType<int, ROWS, COLS> sub(MatrixType<int, ROWS, COLS>& matrix, MatrixType<
         return result;
 }
 
-template<int NUMERATOR, std::size_t ROWS, std::size_t COLS>
-MatrixType<std::ratio<NUMERATOR>, ROWS, COLS> sub(MatrixType<std::ratio<NUMERATOR>, ROWS, COLS>& matrix,
-    MatrixType<std::ratio<NUMERATOR>, ROWS, COLS>& other) {
-        MatrixType result{};
+template<std::size_t ROWS, std::size_t COLS>
+MatrixType<Rational, ROWS, COLS> sub(MatrixType<Rational, ROWS, COLS>& matrix,
+    MatrixType<Rational, ROWS, COLS>& other) {
+        MatrixType<Rational, ROWS, COLS> result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[i][j] = matrix[i][j] - other[i][j];
@@ -77,7 +79,7 @@ MatrixType<std::ratio<NUMERATOR>, ROWS, COLS> sub(MatrixType<std::ratio<NUMERATO
 
 template<std::size_t ROWS, std::size_t COLS>
 MatrixType<double, COLS, ROWS> transpose(MatrixType<double, ROWS, COLS>& matrix) {
-        MatrixType result{};
+        MatrixType<double, COLS, ROWS> result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[j][i] = matrix[i][j];
@@ -88,7 +90,7 @@ MatrixType<double, COLS, ROWS> transpose(MatrixType<double, ROWS, COLS>& matrix)
 
 template<std::size_t ROWS, std::size_t COLS>
 MatrixType<int, COLS, ROWS> transpose(MatrixType<int, ROWS, COLS>& matrix) {
-        MatrixType result{};
+        MatrixType<int, COLS, ROWS> result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[j][i] = matrix[i][j];
@@ -97,9 +99,9 @@ MatrixType<int, COLS, ROWS> transpose(MatrixType<int, ROWS, COLS>& matrix) {
         return result;
 }
 
-template<int NUMERATOR, std::size_t ROWS, std::size_t COLS>
-MatrixType<std::ratio<NUMERATOR>, COLS, ROWS> transpose(MatrixType<std::ratio<NUMERATOR>, ROWS, COLS>& matrix) {
-        MatrixType result{};
+template<std::size_t ROWS, std::size_t COLS>
+MatrixType<Rational, COLS, ROWS> transpose(MatrixType<Rational, ROWS, COLS>& matrix) {
+        MatrixType<Rational, COLS, ROWS> result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[j][i] = matrix[i][j];
@@ -110,7 +112,7 @@ MatrixType<std::ratio<NUMERATOR>, COLS, ROWS> transpose(MatrixType<std::ratio<NU
 
 template<std::size_t ROWS, std::size_t COLS>
 MatrixType<double, ROWS, COLS> scalar(MatrixType<double, ROWS, COLS>& matrix, double scalar) {
-        MatrixType result;
+        MatrixType<double, ROWS, COLS> result;
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[i][j] = matrix[i][j] * scalar;
@@ -121,7 +123,7 @@ MatrixType<double, ROWS, COLS> scalar(MatrixType<double, ROWS, COLS>& matrix, do
 
 template<std::size_t ROWS, std::size_t COLS>
 MatrixType<int, ROWS, COLS> scalar(MatrixType<int, ROWS, COLS>& matrix, int scalar) {
-        MatrixType result;
+        MatrixType<int, ROWS, COLS> result;
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[i][j] = matrix[i][j] * scalar;
@@ -130,10 +132,10 @@ MatrixType<int, ROWS, COLS> scalar(MatrixType<int, ROWS, COLS>& matrix, int scal
         return result;
 }
 
-template<int NUMERATOR, std::size_t ROWS, std::size_t COLS>
-MatrixType<std::ratio<NUMERATOR>, ROWS, COLS> scalar(MatrixType<std::ratio<NUMERATOR>, ROWS, COLS>& matrix,
-    std::ratio<NUMERATOR> scalar) {
-        MatrixType result;
+template<std::size_t ROWS, std::size_t COLS>
+MatrixType<Rational, COLS, ROWS> scalar(MatrixType<MatrixType<Rational, COLS, ROWS>, ROWS, COLS>& matrix,
+    MatrixType<Rational, COLS, ROWS> scalar) {
+        MatrixType<Rational, COLS, ROWS>  result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[i][j] = matrix[i][j] * scalar;
@@ -184,21 +186,21 @@ int determinant(MatrixType<int, N, N>& matrix) {
         }
 }
 
-template<int NUMERATOR,std::size_t N>
-int determinant(MatrixType<std::ratio<NUMERATOR>, N, N>& matrix) {
+template<std::size_t N>
+Rational determinant(MatrixType<Rational, N, N>& matrix) {
         if constexpr (N == 1) {
             return matrix[0][0];
         } else {
-            std::ratio<NUMERATOR> result {0};
+            Rational result {0};
             for (std::size_t i {0}; i < N; ++i) {
-                MatrixType<std::ratio<NUMERATOR>, N - 1, N - 1> subMatrix;
+                MatrixType<Rational, N - 1, N - 1> subMatrix;
                 for (std::size_t j {1}; j < N; ++j) {
                     for (std::size_t k {0}, l {0}; k < N; ++k) {
                         if (k == i) continue;
                         subMatrix[j - 1][l++] = matrix[j][k];
                     }
                 }
-                std::ratio<NUMERATOR> sign {i % 2 == 0 ? 1 : -1};
+                Rational sign {i % 2 == 0 ? 1 : -1};
                 result += sign * matrix[0][i] * determinant(subMatrix);
             }
             return result;
@@ -242,14 +244,14 @@ MatrixType<double, ROWS, COLS> row_reduction(MatrixType<double, ROWS, COLS>& mat
 }
 
 
-template<int NUMERATOR,std::size_t ROWS, std::size_t COLS>
-MatrixType<std::ratio<NUMERATOR>, ROWS, COLS> row_reduction(MatrixType<std::ratio<NUMERATOR>, ROWS, COLS>& matrix) {
+template<std::size_t ROWS, std::size_t COLS>
+MatrixType<Rational, ROWS, COLS> row_reduction(MatrixType<Rational, ROWS, COLS>& matrix) {
         MatrixType result {matrix};
         size_t line {0};
         for (std::size_t j {0}; j < COLS; ++j) {
             int n {-1};
             for (std::size_t i {line}; i < ROWS; ++i) {
-                if (result[i][j] != std::ratio<NUMERATOR>{}) {
+                if (result[i][j] != Rational{}) {
                     n = static_cast<int>(i);
                     break;
                 }
@@ -257,18 +259,18 @@ MatrixType<std::ratio<NUMERATOR>, ROWS, COLS> row_reduction(MatrixType<std::rati
             if (n < 0) continue;
             if (line != static_cast<std::size_t>(n)) {
                 for (std::size_t k {0}; k < COLS; ++k) {
-                    std::ratio<NUMERATOR> aux {result[line][k]};
+                    Rational aux {result[line][k]};
                     result[line][k] = result[n][k];
                     result[n][k] = aux;
                 }
             }
-            std::ratio<NUMERATOR> factor {result[line][j]};
+            Rational factor {result[line][j]};
             for (std::size_t k {0}; k < COLS; ++k) {
                 result[line][k] = result[line][k] / factor;
             }
             for (std::size_t i {0}; i < ROWS; ++i) {
                 if (i == line) continue;
-                std::ratio<NUMERATOR> _factor {result[i][j]};
+                Rational _factor {result[i][j]};
                 for (std::size_t k {0}; k < COLS; ++k) {
                     result[i][k] = result[i][k] - result[line][k] * _factor;
                 }
