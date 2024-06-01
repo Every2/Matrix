@@ -280,6 +280,53 @@ MatrixType<Rational, ROWS, COLS> row_reduction(MatrixType<Rational, ROWS, COLS>&
         return result;
 }
 
+template<std::size_t ROWS, std::size_t MID, std::size_t COLS>
+MatrixType<double, COLS, ROWS> product(MatrixType<double, ROWS, MID>& matrix,
+    MatrixType<double, MID, COLS>& other) {
+    MatrixType<double, COLS, ROWS> result{};
+
+    for (std::size_t i{0}; i < ROWS; ++i) {
+        for (std::size_t j{0}; j < COLS; ++j) {
+            for (std::size_t k{0}; k < MID; ++k) {
+                result[i][j] += matrix[i][k] * other[k][j];
+            }
+        }
+    }
+
+    return result;
+}
+
+template<std::size_t ROWS, std::size_t MID, std::size_t COLS>
+MatrixType<int, COLS, ROWS> product(MatrixType<int, ROWS, MID>& matrix,
+    MatrixType<int, MID, COLS>& other) {
+    MatrixType<int, COLS, ROWS> result{};
+
+    for (std::size_t i{0}; i < ROWS; ++i) {
+        for (std::size_t j{0}; j < COLS; ++j) {
+            for (std::size_t k{0}; k < MID; ++k) {
+                result[i][j] += matrix[i][k] * other[k][j];
+            }
+        }
+    }
+
+    return result;
+}
+
+template<std::size_t ROWS, std::size_t MID, std::size_t COLS>
+MatrixType<Rational, COLS, ROWS> product(MatrixType<Rational, ROWS, MID>& matrix,
+    MatrixType<Rational, MID, COLS>& other) {
+    MatrixType<Rational, COLS, ROWS> result{};
+
+    for (std::size_t i{0}; i < ROWS; ++i) {
+        for (std::size_t j{0}; j < COLS; ++j) {
+            for (std::size_t k{0}; k < MID; ++k) {
+                result[i][j] = result[i][j] + matrix[i][k] * other[k][j];
+            }
+        }
+    }
+
+    return result;
+}
 
 
 #endif //SPECIALIZED_FUNCTIONS_HPP

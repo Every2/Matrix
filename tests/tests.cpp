@@ -181,6 +181,51 @@ TEST(TransposeTest, MatrixTranspose) {
     ASSERT_EQ(result, expected_result);
 }
 
+TEST(FormulaMultiTest, MatrixFormulaMulti) {
+    MatrixType<Rational, 2, 3> matrix = {{
+        {{
+            Rational(1, 1),
+            Rational(2, 1),
+            Rational(3, 1),
+        }},
+        {{
+            Rational(0, 1),
+            Rational(6, 1),
+            Rational(1, 1),
+        }},
+    }};
+
+    MatrixType<Rational, 3, 2> another = {{
+        {{
+            Rational(1, 1),
+            Rational(1, 1),
+        }},
+        {{
+            Rational(4, 1),
+            Rational(4, 1),
+        }},
+        {{
+            Rational(2, 1),
+            Rational(2, 1),
+        }},
+    }};
+
+    MatrixType<Rational, 2, 2> result = {{
+        {{
+            Rational(15, 1),
+            Rational(15, 1),
+        }},
+        {{
+            Rational(26, 1),
+            Rational(26, 1),
+        }},
+    }};
+
+    auto actual_result = product(matrix, another);
+
+    ASSERT_EQ(actual_result, result);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
