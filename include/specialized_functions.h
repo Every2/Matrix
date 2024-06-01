@@ -133,9 +133,9 @@ MatrixType<int, ROWS, COLS> scalar(MatrixType<int, ROWS, COLS>& matrix, int scal
 }
 
 template<std::size_t ROWS, std::size_t COLS>
-MatrixType<Rational, COLS, ROWS> scalar(MatrixType<MatrixType<Rational, COLS, ROWS>, ROWS, COLS>& matrix,
-    MatrixType<Rational, COLS, ROWS> scalar) {
-        MatrixType<Rational, COLS, ROWS>  result{};
+MatrixType<Rational, ROWS, COLS> scalar(MatrixType<Rational, ROWS, COLS>& matrix,
+    int scalar) {
+        MatrixType<Rational, ROWS, COLS>  result{};
         for (std::size_t i {0}; i < ROWS; ++i) {
             for (std::size_t j {0}; j < COLS; ++j) {
                 result[i][j] = matrix[i][j] * scalar;
