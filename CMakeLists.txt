@@ -7,7 +7,6 @@ find_package(Boost)
 
 add_executable(matrix
         include/matrix.hpp
-        src/matrix.cpp
         include/specialized_functions.h
 )
 
