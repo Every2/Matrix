@@ -101,7 +101,7 @@ namespace mtx_f {
     }
 
     template<std::size_t ROWS, std::size_t COLS>
-    MatrixType<Rational, ROWS, COLS> transpose(MatrixType<Rational, ROWS, COLS> &matrix) {
+    MatrixType<Rational, COLS, ROWS> transpose(MatrixType<Rational, ROWS, COLS> &matrix) {
         MatrixType<Rational, COLS, ROWS> result{};
         for (std::size_t i{0}; i < ROWS; ++i) {
             for (std::size_t j{0}; j < COLS; ++j) {
