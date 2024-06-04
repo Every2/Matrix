@@ -29,3 +29,10 @@ Depois disso, rode `conan install . --output-folder=build --build=missing` no me
 
 Tudo deve funcionar! :)
 
+
+# Mais
+
+[Arquitetura](docs/translations/arch.md)
+
+[Perguntas frequentes](docs/translations/FAQ.md)
+

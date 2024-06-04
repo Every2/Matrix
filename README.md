@@ -32,3 +32,8 @@ After that, run `conan install . --output-folder=build --build=missing` in the s
 
 Everything should work! :)
 
+# More
+
+[Arch](docs/arch.md)
+
+[FAQ](docs/FAQ.md)
