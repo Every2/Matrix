@@ -1,6 +1,6 @@
 # FAQ
 
-[PT-BR](docs/translations/FAQ.md)
+[PT-BR](translations/FAQ.md)
 
 # Why was the Determinant left out of the class?
 

@@ -1,4 +1,4 @@
-[PT-BR](docs/translations/arch.md)
+[PT-BR](translations/arch.md)
 
 # Design
 
