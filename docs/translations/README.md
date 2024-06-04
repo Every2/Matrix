@@ -32,7 +32,7 @@ Tudo deve funcionar! :)
 
 # Mais
 
-[Arquitetura](docs/translations/arch.md)
+[Arquitetura](arch.md)
 
-[Perguntas frequentes](docs/translations/FAQ.md)
+[Perguntas frequentes](FAQ.md)
 
